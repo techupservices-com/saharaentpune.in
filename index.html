@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahara Enterprises | Born to Achieve</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300;1,600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ocean: #0A6EBD;
+      --ocean-dark: #064F8C;
+      --ocean-deep: #032E54;
+      --teal: #0DA8A0;
+      --teal-light: #2DCCC3;
+      --teal-pale: #D0F5F3;
+      --sky: #E8F4FD;
+      --sky-mid: #BAE0F8;
+      --white: #FFFFFF;
+      --off-white: #F5FAFF;
+      --ink: #0D1F35;
+      --slate: #3A5572;
+      --muted: #6B8099;
+      --border: #D6E8F5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      padding: 0 60px;
+      height: 68px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    /* GEOMETRIC LOGO MARK */
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-logo-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ocean-deep);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo-sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--ocean);
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--ocean), var(--teal));
+      color: var(--white) !important;
+      padding: 9px 22px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: opacity 0.2s !important;
+      box-shadow: 0 4px 14px rgba(10, 110, 189, 0.3);
+    }
+
+    .nav-cta:hover {
+      opacity: 0.9;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--ocean-deep);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(13, 168, 160, 0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 80%, rgba(10, 110, 189, 0.25) 0%, transparent 50%);
+    }
+
+    /* Animated mesh grid */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 70px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(13, 168, 160, 0.15);
+      border: 1px solid rgba(13, 168, 160, 0.35);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 32px;
+      width: fit-content;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal-light);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 4.8vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.25s forwards;
+    }
+
+    .hero-title .accent {
+      font-style: italic;
+      font-weight: 300;
+      background: linear-gradient(90deg, var(--teal-light), #5DE8E0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.8;
+      color: rgba(186, 224, 248, 0.8);
+      max-width: 440px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.4s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.55s forwards;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: var(--ocean-deep);
+      padding: 14px 32px;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(13, 168, 160, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(13, 168, 160, 0.5);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(186, 224, 248, 0.8);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid rgba(186, 224, 248, 0.25);
+      padding: 14px 24px;
+      border-radius: 7px;
+      transition: all 0.2s;
+    }
+
+    .btn-hero-secondary:hover {
+      border-color: rgba(186, 224, 248, 0.6);
+      color: var(--white);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 44px;
+      margin-top: 60px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      opacity: 0;
+      animation: fadeUp 0.7s 0.7s forwards;
+    }
+
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-num span {
+      color: var(--teal-light);
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(186, 224, 248, 0.55);
+      margin-top: 6px;
+    }
+
+    /* HERO RIGHT VISUAL */
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      padding: 120px 60px 80px 20px;
+    }
+
+    .hero-visual-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .hero-card-main {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.8s 0.6s both;
+    }
+
+    .hero-card-main::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ocean), var(--teal), var(--teal-light));
+    }
+
+    .hc-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 20px;
+    }
+
+    .hc-stat-row {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    .hc-stat-item {
+      flex: 1;
+    }
+
+    .hc-stat-val {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hc-stat-lbl {
+      font-size: 0.72rem;
+      color: rgba(186, 224, 248, 0.55);
+      margin-top: 4px;
+    }
+
+    .hc-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .hc-clients {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hc-client {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .hc-client-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .hc-client-tag {
+      font-size: 0.65rem;
+      background: rgba(13, 168, 160, 0.2);
+      color: var(--teal-light);
+      padding: 3px 10px;
+      border-radius: 10px;
+    }
+
+    .hero-card-float {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: linear-gradient(135deg, var(--ocean), var(--teal));
+      border-radius: 12px;
+      padding: 18px 22px;
+      box-shadow: 0 16px 40px rgba(10, 110, 189, 0.5);
+      animation: fadeUp 0.8s 0.9s both;
+    }
+
+    .hcf-num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hcf-lbl {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 4px;
+    }
+
+    /* SECTION BASE */
+    section {
+      position: relative;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+
+    .section-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal-pale);
+      color: var(--teal);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    /* ABOUT */
+    #about {
+      padding: 120px 0;
+      background: var(--off-white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--slate);
+      font-weight: 400;
+      margin-top: 24px;
+    }
+
+    .about-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ocean-dark);
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .pill:hover {
+      background: var(--ocean);
+      color: var(--white);
+      border-color: var(--ocean);
+    }
+
+    .pill:hover .pill-icon {
+      filter: brightness(5);
+    }
+
+    .pill-icon {
+      font-size: 0.9rem;
+    }
+
+    .about-visual {
+      display: grid;
+      gap: 20px;
+    }
+
+    .about-card {
+      background: var(--white);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .about-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(10, 110, 189, 0.1);
+    }
+
+    .about-card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .ac-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .ac-icon.blue {
+      background: var(--sky);
+    }
+
+    .ac-icon.teal {
+      background: var(--teal-pale);
+    }
+
+    .ac-icon.ocean {
+      background: #E8F0FA;
+    }
+
+    .ac-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .ac-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .about-card.featured {
+      background: linear-gradient(135deg, var(--ocean-deep), var(--ocean-dark));
+      border-color: transparent;
+    }
+
+    .about-card.featured .ac-title {
+      color: var(--white);
+    }
+
+    .about-card.featured .ac-desc {
+      color: rgba(186, 224, 248, 0.7);
+    }
+
+    /* SERVICES */
+    #services {
+      padding: 120px 0;
+      background: var(--white);
+    }
+
+    .services-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 60px;
+    }
+
+    .services-intro {
+      font-size: 0.97rem;
+      color: var(--slate);
+      line-height: 1.8;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .srv-card {
+      background: var(--off-white);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 30px 26px;
+      transition: all 0.3s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .srv-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: linear-gradient(135deg, var(--ocean), var(--teal));
+      transition: height 0.35s ease;
+      z-index: 0;
+    }
+
+    .srv-card:hover {
+      border-color: var(--ocean);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(10, 110, 189, 0.12);
+    }
+
+    .srv-card:hover::after {
+      height: 3px;
+    }
+
+    .srv-card:hover .srv-icon-wrap {
+      background: var(--ocean);
+    }
+
+    .srv-card:hover .srv-icon-wrap span {
+      filter: brightness(10);
+    }
+
+    .srv-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--sky-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      transition: background 0.3s;
+    }
+
+    .srv-icon-wrap span {
+      font-size: 1.2rem;
+    }
+
+    .srv-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .srv-desc {
+      font-size: 0.81rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .srv-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--sky);
+      color: var(--ocean);
+      padding: 4px 10px;
+      border-radius: 10px;
+    }
+
+    .srv-card.highlight {
+      background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean) 100%);
+      border-color: transparent;
+    }
+
+    .srv-card.highlight .srv-icon-wrap {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .srv-card.highlight .srv-title {
+      color: var(--white);
+    }
+
+    .srv-card.highlight .srv-desc {
+      color: rgba(186, 224, 248, 0.7);
+    }
+
+    .srv-card.highlight::after {
+      display: none;
+    }
+
+    .srv-card.highlight:hover {
+      box-shadow: 0 16px 40px rgba(10, 110, 189, 0.4);
+    }
+
+    /* CLIENTS */
+    #clients {
+      padding: 100px 0;
+      background: var(--ocean-deep);
+    }
+
+    .clients-inner {
+      text-align: center;
+    }
+
+    .clients-inner .section-chip {
+      background: rgba(13, 168, 160, 0.2);
+      color: var(--teal-light);
+    }
+
+    .clients-inner .section-title {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .clients-intro-text {
+      font-size: 0.97rem;
+      color: rgba(186, 224, 248, 0.6);
+      max-width: 480px;
+      margin: 0 auto 56px;
+      line-height: 1.8;
+    }
+
+    .clients-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cl-card {
+      background: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 32px 36px 24px;
+      min-width: 190px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: default;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cl-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+    }
+
+    .cl-logo-wrap {
+      width: 160px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cl-detail {
+      font-size: 0.67rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+    }
+
+    .cl-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--teal);
+      color: var(--ocean-deep);
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 10px;
+      z-index: 2;
+    }
+
+    .cl-card-flexiloans {
+      background: #ffffff;
+    }
+
+    /* LOCATIONS */
+    #locations {
+      padding: 120px 0;
+      background: var(--off-white);
+    }
+
+    .loc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 72px;
+      align-items: start;
+      margin-top: 60px;
+    }
+
+    .loc-text p {
+      font-size: 0.97rem;
+      color: var(--slate);
+      line-height: 1.8;
+      margin-top: 20px;
+      margin-bottom: 32px;
+    }
+
+    .hub-list {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .hub {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .hub.main {
+      background: var(--ocean);
+      color: var(--white);
+    }
+
+    .hub.branch {
+      background: var(--white);
+      color: var(--ocean-dark);
+      border: 1px solid var(--border);
+    }
+
+    .hub.branch:hover {
+      background: var(--sky);
+      border-color: var(--ocean);
+    }
+
+    .hub-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal-light);
+      flex-shrink: 0;
+    }
+
+    .hub.branch .hub-dot {
+      background: var(--teal);
+    }
+
+    .loc-map-panel {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 40px;
+    }
+
+    .loc-map-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .cov-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 16px;
+    }
+
+    .cov-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--ink);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .cov-item:hover {
+      color: var(--ocean);
+    }
+
+    .cov-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* CONTACT */
+    #contact {
+      padding: 120px 0;
+      background: var(--white);
+    }
+
+    .contact-wrap {
+      background: var(--ocean-deep);
+      border-radius: 24px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+    }
+
+    .contact-left {
+      padding: 64px 56px;
+      background: linear-gradient(160deg, var(--ocean-dark) 0%, var(--ocean-deep) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-left::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13, 168, 160, 0.12), transparent);
+    }
+
+    .contact-left .section-chip {
+      background: rgba(13, 168, 160, 0.2);
+      color: var(--teal-light);
+    }
+
+    .contact-left .section-title {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .contact-tagline {
+      font-size: 0.97rem;
+      color: rgba(186, 224, 248, 0.65);
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+
+    .ci-list {
+      display: grid;
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ci-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .ci-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .ci-lbl {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 4px;
+    }
+
+    .ci-val {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    .ci-val a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .ci-val a:hover {
+      color: var(--teal-light);
+    }
+
+    .contact-right {
+      padding: 56px 52px;
+      background: var(--white);
+    }
+
+    .form-head {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    .fg {
+      margin-bottom: 18px;
+    }
+
+    .fg label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 7px;
+    }
+
+    .fg input,
+    .fg textarea,
+    .fg select {
+      width: 100%;
+      background: var(--off-white);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 15px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .fg input:focus,
+    .fg textarea:focus,
+    .fg select:focus {
+      border-color: var(--ocean);
+      box-shadow: 0 0 0 3px rgba(10, 110, 189, 0.1);
+    }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: var(--muted);
+    }
+
+    .fg select option {
+      background: var(--white);
+      color: var(--ink);
+    }
+
+    .fg textarea {
+      resize: vertical;
+      min-height: 96px;
+    }
+
+    .fg-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--ocean), var(--teal));
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.25s;
+      margin-top: 6px;
+      box-shadow: 0 6px 20px rgba(10, 110, 189, 0.3);
+    }
+
+    .form-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(10, 110, 189, 0.4);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      padding: 40px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .footer-logo-name span {
+      color: var(--teal-light);
+    }
+
+    .footer-tagline {
+      font-family: 'Fraunces', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: rgba(186, 224, 248, 0.35);
+    }
+
+    .footer-copy {
+      font-size: 0.73rem;
+      color: rgba(186, 224, 248, 0.3);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .hero-left {
+        padding: 110px 28px 60px;
+      }
+
+      .about-grid,
+      .services-head,
+      .loc-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .section-inner {
+        padding: 0 24px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+        padding: 30px 24px;
+      }
+
+      .fg-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .cov-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .clients-grid {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="#" class="nav-logo">
+      <!-- GEOMETRIC LOGO MARK — abstract S formed by intersecting arcs and a triangle -->
+      <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background circle -->
+        <circle cx="19" cy="19" r="19" fill="url(#lg1)" />
+        <!-- Abstract mark: two offset arcs suggesting flow/connection + upward triangle for growth -->
+        <path d="M10 24 Q10 14 19 14 Q28 14 28 20" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none"
+          stroke-linecap="round" />
+        <path d="M10 20 Q10 26 19 26 Q28 26 28 16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" />
+        <!-- small diamond accent top-right -->
+        <rect x="22" y="9" width="5" height="5" rx="1" transform="rotate(45 24.5 11.5)" fill="rgba(255,255,255,0.5)" />
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0A6EBD" />
+            <stop offset="100%" stop-color="#0DA8A0" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Sahara Enterprises</span>
+        <span class="nav-logo-sub">Born to Achieve</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#locations">Locations</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Premier B2B &amp; B2C Partner
+      </div>
+      <h1 class="hero-title">
+        Driven by<br>
+        <span class="accent">Excellence,</span><br>
+        Built on Trust
+      </h1>
+      <p class="hero-sub">Serving high-profile clients across Maharashtra with efficiency, accuracy, and unwavering
+        commitment through advanced ICT solutions.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-hero-primary">
+          Our Services
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+        <a href="#contact" class="btn-hero-secondary">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">6<span>+</span></div>
+          <div class="stat-label">Years Active</div>
+        </div>
+        <div>
+          <div class="stat-num">45<span>+</span></div>
+          <div class="stat-label">Professionals</div>
+        </div>
+        <div>
+          <div class="stat-num">10<span>+</span></div>
+          <div class="stat-label">Cities</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual-wrap">
+        <div class="hero-card-main">
+          <div class="hc-label">At a glance</div>
+          <div class="hc-stat-row">
+            <div class="hc-stat-item">
+              <div class="hc-stat-val">12</div>
+              <div class="hc-stat-lbl">DRA Certified</div>
+            </div>
+            <div class="hc-stat-item">
+              <div class="hc-stat-val">3</div>
+              <div class="hc-stat-lbl">Office Hubs</div>
+            </div>
+            <div class="hc-stat-item">
+              <div class="hc-stat-val">5+</div>
+              <div class="hc-stat-lbl">Major Clients</div>
+            </div>
+          </div>
+          <div class="hc-divider"></div>
+          <div class="hc-clients">
+            <div class="hc-client">
+              <span class="hc-client-name" style="color:#ED1C24; font-weight:800;">airtel</span>
+              <span class="hc-client-tag">6+ yrs</span>
+            </div>
+            <div class="hc-client">
+              <span class="hc-client-name" style="color:#AA1C2A; font-weight:800;">ICICI Bank</span>
+              <span class="hc-client-tag">Active</span>
+            </div>
+            <div class="hc-client">
+              <span class="hc-client-name" style="color:#003087; font-weight:800;">Bajaj Finserv</span>
+              <span class="hc-client-tag">Active</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-card-float">
+          <div class="hcf-num">MH</div>
+          <div class="hcf-lbl">Maharashtra Wide</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <div class="section-chip">Who We Are</div>
+          <h2 class="section-title">Premier Services, Proven Results</h2>
+          <p>Sahara Enterprises is a premier service provider catering to high-profile clients in today's globalised
+            world. With over 6 years of experience serving major brands like Airtel, we bridge the distance in business
+            through advanced information and communication technology.</p>
+          <div class="about-pills">
+            <div class="pill"><span class="pill-icon">&#x1F465;</span> 45+ Professionals</div>
+            <div class="pill"><span class="pill-icon">&#x1F3C5;</span> DRA Certified Team</div>
+            <div class="pill"><span class="pill-icon">&#x1F4CD;</span> 10+ Cities</div>
+            <div class="pill"><span class="pill-icon">&#x2B50;</span> 6+ Years</div>
+          </div>
+        </div>
+        <div class="about-visual reveal">
+          <div class="about-card featured">
+            <div class="about-card-top">
+              <div class="ac-icon blue" style="background:rgba(255,255,255,0.1)">&#x1F310;</div>
+              <div class="ac-title">Our Mission</div>
+            </div>
+            <div class="ac-desc">Bridging the distance in business through advanced technology and a dedicated team —
+              serving clients with efficiency and unwavering commitment.</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-top">
+              <div class="ac-icon blue">&#x1F465;</div>
+              <div class="ac-title">Team Strength</div>
+            </div>
+            <div class="ac-desc">45+ dedicated professionals across Maharashtra, including 7 Field Executives and 5
+              Telecallers with DRA Certification.</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-top">
+              <div class="ac-icon teal">&#x1F3C6;</div>
+              <div class="ac-title">Certified Expertise</div>
+            </div>
+            <div class="ac-desc">Our certified team ensures every operation is compliant, professional, and held to the
+              highest industry standards.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="services-head reveal">
+        <div>
+          <div class="section-chip">What We Do</div>
+          <h2 class="section-title">Comprehensive Solutions</h2>
+        </div>
+        <p class="services-intro">We provide comprehensive field and telecalling activities tailored to your specific
+          requirements — from collection to verification, from retention to recovery.</p>
+      </div>
+      <div class="services-grid reveal">
+        <div class="srv-card">
+          <div class="srv-icon-wrap"><span>&#x1F4DE;</span></div>
+          <div class="srv-title">Telecalling &amp; Field Collection</div>
+          <div class="srv-desc">End-to-end collection across all buckets with certified telecallers and field agents.
+          </div>
+          <span class="srv-tag">All Buckets</span>
+        </div>
+        <div class="srv-card">
+          <div class="srv-icon-wrap"><span>&#x1F50D;</span></div>
+          <div class="srv-title">Skip Tracing</div>
+          <div class="srv-desc">Advanced location and contact tracing services for elusive debtors.</div>
+          <span class="srv-tag">Specialized</span>
+        </div>
+        <div class="srv-card">
+          <div class="srv-icon-wrap"><span>&#x1F4B0;</span></div>
+          <div class="srv-title">EMI &amp; Outstanding Due Collection</div>
+          <div class="srv-desc">Systematic EMI recovery and outstanding dues management.</div>
+          <span class="srv-tag">Core Service</span>
+        </div>
+        <div class="srv-card">
+          <div class="srv-icon-wrap"><span>&#x1F4CB;</span></div>
+          <div class="srv-title">Write-off Collection &amp; Recoveries</div>
+          <div class="srv-desc">Specialized recovery of written-off accounts using proven methodologies.</div>
+          <span class="srv-tag">Recovery</span>
+        </div>
+        <div class="srv-card">
+          <div class="srv-icon-wrap"><span>&#x2705;</span></div>
+          <div class="srv-title">Employment &amp; Address Verification</div>
+          <div class="srv-desc">Accurate candidate verification and address confirmation across Maharashtra.</div>
+          <span class="srv-tag">Verification</span>
+        </div>
+        <div class="srv-card highlight">
+          <div class="srv-icon-wrap"><span>&#x1F91D;</span></div>
+          <div class="srv-title">Post-Sales Client Verification</div>
+          <div class="srv-desc">Ensuring data accuracy and satisfaction after every sale.</div>
+          <span class="srv-tag" style="background:rgba(45,204,195,0.2); color:var(--teal-light);">Post-Sales</span>
+        </div>
+        <div class="srv-card">
+          <div class="srv-icon-wrap"><span>&#x1F3C3;</span></div>
+          <div class="srv-title">Payment Pickups</div>
+          <div class="srv-desc">Secure physical payment collection with professional field executives.</div>
+          <span class="srv-tag">Field Service</span>
+        </div>
+        <div class="srv-card">
+          <div class="srv-icon-wrap"><span>&#x1F48E;</span></div>
+          <div class="srv-title">Customer Retention Services</div>
+          <div class="srv-desc">Proactive strategies to reduce churn and strengthen relationships.</div>
+          <span class="srv-tag">Retention</span>
+        </div>
+        <div class="srv-card"
+          style="background:var(--sky); border-style:dashed; border-color:var(--sky-mid); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+          <div style="font-size:1.6rem; margin-bottom:14px; opacity:0.6">&#x2728;</div>
+          <div class="srv-title">Custom Solutions</div>
+          <div class="srv-desc" style="margin-bottom:14px;">Unique needs? We tailor every service to your business.
+          </div>
+          <a href="#contact"
+            style="font-size:0.75rem; font-weight:700; color:var(--ocean); text-decoration:none; letter-spacing:0.05em;">Talk
+            to us &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section id="clients">
+    <div class="section-inner">
+      <div class="clients-inner reveal">
+        <div class="section-chip">Trusted Partners</div>
+        <h2 class="section-title">Our Prestigious Clients</h2>
+        <p class="clients-intro-text">We take pride in partnering with industry-leading brands and financial
+          institutions across India.</p>
+        <div class="clients-grid">
+
+          <!-- AIRTEL -->
+          <div class="cl-card">
+            <div class="cl-badge">6+ Years</div>
+            <div class="cl-logo-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Bharti_Airtel_Logo.svg" alt="Airtel Logo" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.04));">
+            </div>
+            <div class="cl-detail">Telecom Partner</div>
+          </div>
+
+          <!-- ICICI BANK -->
+          <div class="cl-card">
+            <div class="cl-logo-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/ICICI_Bank_Logo.svg" alt="ICICI Bank Logo" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.04));">
+            </div>
+            <div class="cl-detail">Consumer Durable Loans</div>
+          </div>
+
+          <!-- BAJAJ FINSERV -->
+          <div class="cl-card">
+            <div class="cl-logo-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Bajaj_Finserv_Logo.svg" alt="Bajaj Finserv Logo" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.04));">
+            </div>
+            <div class="cl-detail">Consumer Durable Loans</div>
+          </div>
+
+          <!-- TATA SKY (now Tata Play) -->
+          <div class="cl-card">
+            <div class="cl-logo-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Tata_Play_2022_logo.svg" alt="Tata Play Logo" style="max-width: 75%; max-height: 100%; object-fit: contain; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.04));">
+            </div>
+            <div class="cl-detail">Service Partner</div>
+          </div>
+
+          <!-- FLEXILOANS -->
+          <div class="cl-card cl-card-flexiloans">
+            <div class="cl-logo-wrap">
+              <img src="https://flexiloans.com/loan/images/logo.svg" alt="FlexiLoans Logo" style="background-color: #00A651; padding: 8px 12px; border-radius: 8px; max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0px 4px 8px rgba(0, 166, 81, 0.25));">
+            </div>
+            <div class="cl-detail">Financial Services</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section id="locations">
+    <div class="section-inner">
+      <div class="section-chip reveal">Our Reach</div>
+      <h2 class="section-title reveal">Operating Across Maharashtra</h2>
+      <div class="loc-grid">
+        <div class="loc-text reveal">
+          <p>We maintain strong ground presence with established office setups across the state, enabling rapid
+            deployment and local expertise wherever your business needs us.</p>
+          <div
+            style="font-size:0.68rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--teal); margin-bottom:12px;">
+            Office Hubs</div>
+          <div class="hub-list">
+            <div class="hub main">
+              <div class="hub-dot"></div>Pune — HQ
+            </div>
+            <div class="hub branch">
+              <div class="hub-dot"></div>Nagpur
+            </div>
+            <div class="hub branch">
+              <div class="hub-dot"></div>Aurangabad
+            </div>
+          </div>
+        </div>
+        <div class="loc-map-panel reveal">
+          <div class="loc-map-title">Full Coverage Network</div>
+          <div class="cov-grid">
+            <div class="cov-item">
+              <div class="cov-dot"></div>Pune
+            </div>
+            <div class="cov-item">
+              <div class="cov-dot"></div>Indapur
+            </div>
+            <div class="cov-item">
+              <div class="cov-dot"></div>Baramati
+            </div>
+            <div class="cov-item">
+              <div class="cov-dot"></div>Daund
+            </div>
+            <div class="cov-item">
+              <div class="cov-dot"></div>Aurangabad
+            </div>
+            <div class="cov-item">
+              <div class="cov-dot"></div>Nagpur
+            </div>
+            <div class="cov-item">
+              <div class="cov-dot"></div>Amrawati
+            </div>
+            <div class="cov-item">
+              <div class="cov-dot"></div>Akola
+            </div>
+            <div class="cov-item">
+              <div class="cov-dot"></div>Solapur
+            </div>
+            <div class="cov-item">
+              <div class="cov-dot"></div>Kolhapur
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="contact-wrap reveal">
+        <div class="contact-left">
+          <div class="section-chip">Get in Touch</div>
+          <h2 class="section-title">Let's Work Together</h2>
+          <p class="contact-tagline">Ready to streamline your operations? Reach out and we'll craft a solution built
+            around your needs.</p>
+          <div class="ci-list">
+            <div class="ci-item">
+              <div class="ci-icon">&#x1F4CD;</div>
+              <div>
+                <div class="ci-lbl">Headquarters</div>
+                <div class="ci-val">Office No 3, 3rd Floor, SR No 502, Rasta Peth<br>Above Kailash Dairy, Near Apollo
+                  Theater<br>Pune &#8211; 411011</div>
+              </div>
+            </div>
+            <div class="ci-item">
+              <div class="ci-icon">&#x1F464;</div>
+              <div>
+                <div class="ci-lbl">Contact Person</div>
+                <div class="ci-val">Attaulla Inamdar</div>
+              </div>
+            </div>
+            <div class="ci-item">
+              <div class="ci-icon">&#x1F4F1;</div>
+              <div>
+                <div class="ci-lbl">Mobile</div>
+                <div class="ci-val"><a href="tel:+919860300559">+91 98603 00559</a></div>
+              </div>
+            </div>
+            <div class="ci-item">
+              <div class="ci-icon">&#x2709;&#xFE0F;</div>
+              <div>
+                <div class="ci-lbl">Email</div>
+                <div class="ci-val"><a href="mailto:saharaenterprises210@yahoo.in">saharaenterprises210@yahoo.in</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-right">
+          <div class="form-head">Send an Enquiry</div>
+          <div class="fg-row">
+            <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+            <div class="fg"><label>Company</label><input type="text" placeholder="Your company"></div>
+          </div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="you@company.com"></div>
+          <div class="fg"><label>Phone</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
+          <div class="fg">
+            <label>Service Interest</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Telecalling &amp; Field Collection</option>
+              <option>Skip Tracing</option>
+              <option>EMI &amp; Outstanding Due Collection</option>
+              <option>Write-off Recovery</option>
+              <option>Verification Services</option>
+              <option>Payment Pickups</option>
+              <option>Customer Retention</option>
+              <option>Other / Custom</option>
+            </select>
+          </div>
+          <div class="fg"><label>Message</label><textarea placeholder="Tell us about your requirements..."></textarea>
+          </div>
+          <button class="form-btn"
+            onclick="this.textContent='Sent! We\u2019ll be in touch \u2713'; this.style.background='linear-gradient(135deg,#1a7a4a,#2dccc3)'; setTimeout(()=>{this.textContent='Send Enquiry';this.style.background='';},3200)">Send
+            Enquiry</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <svg width="28" height="28" viewBox="0 0 38 38" fill="none">
+        <circle cx="19" cy="19" r="19" fill="url(#flg)" />
+        <path d="M10 24 Q10 14 19 14 Q28 14 28 20" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none"
+          stroke-linecap="round" />
+        <path d="M10 20 Q10 26 19 26 Q28 26 28 16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" />
+        <rect x="22" y="9" width="5" height="5" rx="1" transform="rotate(45 24.5 11.5)" fill="rgba(255,255,255,0.5)" />
+        <defs>
+          <linearGradient id="flg" x1="0" y1="0" x2="38" y2="38">
+            <stop offset="0%" stop-color="#0A6EBD" />
+            <stop offset="100%" stop-color="#0DA8A0" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="footer-logo-name">Sahara <span>Enterprises</span></div>
+    </div>
+    <div class="footer-tagline">Born to Achieve</div>
+    <div class="footer-copy">&copy; 2024 Sahara Enterprises, Pune</div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 90);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('main-nav').style.boxShadow =
+        window.scrollY > 40 ? '0 4px 24px rgba(10,80,140,0.1)' : 'none';
+    });
+  </script>
+</body>
+
+</html>
