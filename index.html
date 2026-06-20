@@ -1150,6 +1150,12 @@
       box-shadow: 0 10px 28px rgba(10, 110, 189, 0.4);
     }
 
+    .form-btn:disabled {
+      opacity: 0.75;
+      cursor: wait;
+      transform: none;
+    }
+
     .form-status {
       margin-top: 14px;
       font-size: 0.82rem;
@@ -1778,43 +1784,59 @@
     const contactSubmit = document.getElementById('contact-submit');
     const contactStatus = document.getElementById('contact-status');
 
-    contactForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
+    if (contactForm && contactSubmit && contactStatus) {
+      contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-      const formData = new FormData(contactForm);
-      const payload = Object.fromEntries(formData.entries());
+        const formData = new FormData(contactForm);
+        const payload = {
+          name: formData.get('name') || '',
+          company: formData.get('company') || '',
+          email: formData.get('email') || '',
+          phone: formData.get('phone') || '',
+          service: formData.get('service') || '',
+          message: formData.get('message') || '',
+        };
 
-      contactSubmit.disabled = true;
-      contactSubmit.textContent = 'Sending...';
-      contactStatus.textContent = '';
-      contactStatus.className = 'form-status';
+        contactSubmit.disabled = true;
+        contactSubmit.textContent = 'Sending...';
+        contactStatus.textContent = 'Submitting your enquiry...';
+        contactStatus.className = 'form-status';
 
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        });
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
 
-        const result = await response.json();
+          const responseText = await response.text();
+          let result = {};
 
-        if (!response.ok) {
-          throw new Error(result.message || 'Unable to send enquiry.');
+          try {
+            result = responseText ? JSON.parse(responseText) : {};
+          } catch (_parseError) {
+            result = {};
+          }
+
+          if (!response.ok) {
+            throw new Error(result.message || 'Unable to send enquiry right now. Please try again shortly.');
+          }
+
+          contactForm.reset();
+          contactStatus.textContent = result.message || 'Enquiry sent successfully.';
+          contactStatus.className = 'form-status success';
+        } catch (error) {
+          contactStatus.textContent = error && error.message ? error.message : 'Unable to send enquiry right now.';
+          contactStatus.className = 'form-status error';
+        } finally {
+          contactSubmit.disabled = false;
+          contactSubmit.textContent = 'Send Enquiry';
         }
-
-        contactForm.reset();
-        contactStatus.textContent = result.message || 'Enquiry sent successfully.';
-        contactStatus.className = 'form-status success';
-      } catch (error) {
-        contactStatus.textContent = error.message || 'Unable to send enquiry right now.';
-        contactStatus.className = 'form-status error';
-      } finally {
-        contactSubmit.disabled = false;
-        contactSubmit.textContent = 'Send Enquiry';
-      }
-    });
+      });
+    }
   </script>
 </body>
 
