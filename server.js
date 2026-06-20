@@ -91,6 +91,37 @@ app.post('/api/contact', async (req, res) => {
       `,
     });
 
+    await transporter.sendMail({
+      from: process.env.MAIL_FROM,
+      to: email,
+      subject: 'We received your enquiry | Sahara Enterprises',
+      text: [
+        `Hello ${name},`,
+        '',
+        'Thank you for contacting Sahara Enterprises. We have received your enquiry and our team will get back to you shortly.',
+        '',
+        `Service Interest: ${service || 'Not specified'}`,
+        `Phone: ${phone}`,
+        '',
+        'Your message:',
+        message,
+        '',
+        'Regards,',
+        'Sahara Enterprises',
+        'contact@saharaentpune.in',
+      ].join('\n'),
+      html: `
+        <h2>We Received Your Enquiry</h2>
+        <p>Hello ${escapeHtml(name)},</p>
+        <p>Thank you for contacting Sahara Enterprises. We have received your enquiry and our team will get back to you shortly.</p>
+        <p><strong>Service Interest:</strong> ${escapeHtml(service || 'Not specified')}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+        <p><strong>Your Message:</strong></p>
+        <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+        <p>Regards,<br>Sahara Enterprises<br>contact@saharaentpune.in</p>
+      `,
+    });
+
     return res.json({ ok: true, message: 'Enquiry sent successfully.' });
   } catch (error) {
     console.error('Failed to send enquiry email:', error);
