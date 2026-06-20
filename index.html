@@ -1150,6 +1150,22 @@
       box-shadow: 0 10px 28px rgba(10, 110, 189, 0.4);
     }
 
+    .form-status {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      min-height: 1.2em;
+      color: var(--muted);
+    }
+
+    .form-status.success {
+      color: #1f7a4a;
+    }
+
+    .form-status.error {
+      color: #b42318;
+    }
+
     /* FOOTER */
     footer {
       background: var(--ink);
@@ -1688,31 +1704,32 @@
         </div>
         <div class="contact-right">
           <div class="form-head">Send an Enquiry</div>
-          <div class="fg-row">
-            <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name"></div>
-            <div class="fg"><label>Company</label><input type="text" placeholder="Your company"></div>
-          </div>
-          <div class="fg"><label>Email</label><input type="email" placeholder="you@company.com"></div>
-          <div class="fg"><label>Phone</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
-          <div class="fg">
-            <label>Service Interest</label>
-            <select>
-              <option value="">Select a service...</option>
-              <option>Telecalling &amp; Field Collection</option>
-              <option>Skip Tracing</option>
-              <option>EMI &amp; Outstanding Due Collection</option>
-              <option>Write-off Recovery</option>
-              <option>Verification Services</option>
-              <option>Payment Pickups</option>
-              <option>Customer Retention</option>
-              <option>Other / Custom</option>
-            </select>
-          </div>
-          <div class="fg"><label>Message</label><textarea placeholder="Tell us about your requirements..."></textarea>
-          </div>
-          <button class="form-btn"
-            onclick="this.textContent='Sent! We\u2019ll be in touch \u2713'; this.style.background='linear-gradient(135deg,#1a7a4a,#2dccc3)'; setTimeout(()=>{this.textContent='Send Enquiry';this.style.background='';},3200)">Send
-            Enquiry</button>
+          <form id="contact-form">
+            <div class="fg-row">
+              <div class="fg"><label for="full-name">Full Name</label><input id="full-name" name="name" type="text" placeholder="Your name" required></div>
+              <div class="fg"><label for="company">Company</label><input id="company" name="company" type="text" placeholder="Your company"></div>
+            </div>
+            <div class="fg"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@company.com" required></div>
+            <div class="fg"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required></div>
+            <div class="fg">
+              <label for="service">Service Interest</label>
+              <select id="service" name="service">
+                <option value="">Select a service...</option>
+                <option>Telecalling &amp; Field Collection</option>
+                <option>Skip Tracing</option>
+                <option>EMI &amp; Outstanding Due Collection</option>
+                <option>Write-off Recovery</option>
+                <option>Verification Services</option>
+                <option>Payment Pickups</option>
+                <option>Customer Retention</option>
+                <option>Other / Custom</option>
+              </select>
+            </div>
+            <div class="fg"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell us about your requirements..." required></textarea>
+            </div>
+            <button class="form-btn" id="contact-submit" type="submit">Send Enquiry</button>
+            <div class="form-status" id="contact-status" aria-live="polite"></div>
+          </form>
         </div>
       </div>
     </div>
@@ -1755,6 +1772,48 @@
     window.addEventListener('scroll', () => {
       document.getElementById('main-nav').style.boxShadow =
         window.scrollY > 40 ? '0 4px 24px rgba(10,80,140,0.1)' : 'none';
+    });
+
+    const contactForm = document.getElementById('contact-form');
+    const contactSubmit = document.getElementById('contact-submit');
+    const contactStatus = document.getElementById('contact-status');
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(contactForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      contactSubmit.disabled = true;
+      contactSubmit.textContent = 'Sending...';
+      contactStatus.textContent = '';
+      contactStatus.className = 'form-status';
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.message || 'Unable to send enquiry.');
+        }
+
+        contactForm.reset();
+        contactStatus.textContent = result.message || 'Enquiry sent successfully.';
+        contactStatus.className = 'form-status success';
+      } catch (error) {
+        contactStatus.textContent = error.message || 'Unable to send enquiry right now.';
+        contactStatus.className = 'form-status error';
+      } finally {
+        contactSubmit.disabled = false;
+        contactSubmit.textContent = 'Send Enquiry';
+      }
     });
   </script>
 </body>
