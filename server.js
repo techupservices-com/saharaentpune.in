@@ -66,7 +66,7 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    await transporter.sendMail({
+    const adminMailResult = await transporter.sendMail({
       from: process.env.MAIL_FROM,
       to: process.env.MAIL_TO,
       replyTo: email,
@@ -93,8 +93,19 @@ app.post('/api/contact', async (req, res) => {
       `,
     });
 
+    console.log(
+      'Admin enquiry email result:',
+      JSON.stringify({
+        to: process.env.MAIL_TO,
+        messageId: adminMailResult.messageId,
+        accepted: adminMailResult.accepted,
+        rejected: adminMailResult.rejected,
+        response: adminMailResult.response,
+      })
+    );
+
     try {
-      await transporter.sendMail({
+      const confirmationMailResult = await transporter.sendMail({
         from: process.env.MAIL_FROM,
         to: email,
         subject: 'We received your enquiry | Sahara Enterprises',
@@ -143,6 +154,17 @@ app.post('/api/contact', async (req, res) => {
           </div>
         `,
       });
+
+      console.log(
+        'Customer confirmation email result:',
+        JSON.stringify({
+          to: email,
+          messageId: confirmationMailResult.messageId,
+          accepted: confirmationMailResult.accepted,
+          rejected: confirmationMailResult.rejected,
+          response: confirmationMailResult.response,
+        })
+      );
     } catch (confirmationError) {
       console.error(`Customer confirmation email failed for ${email}:`, confirmationError);
     }
