@@ -1157,19 +1157,37 @@
     }
 
     .form-status {
-      margin-top: 14px;
-      font-size: 0.82rem;
-      line-height: 1.5;
-      min-height: 1.2em;
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.6;
       color: var(--muted);
+      background: var(--off-white);
     }
 
     .form-status.success {
+      display: block;
       color: #1f7a4a;
+      background: #ecfdf3;
+      border-color: #abefc6;
     }
 
     .form-status.error {
+      display: block;
       color: #b42318;
+      background: #fef3f2;
+      border-color: #fecdca;
+    }
+
+    .form-status.pending {
+      display: block;
+      color: var(--ocean-dark);
+      background: var(--sky);
+      border-color: var(--sky-mid);
     }
 
     /* FOOTER */
@@ -1801,7 +1819,7 @@
         contactSubmit.disabled = true;
         contactSubmit.textContent = 'Sending...';
         contactStatus.textContent = 'Submitting your enquiry...';
-        contactStatus.className = 'form-status';
+        contactStatus.className = 'form-status pending';
 
         try {
           const response = await fetch('/api/contact', {
